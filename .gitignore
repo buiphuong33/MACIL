@@ -1,0 +1,10 @@
+**/__pycache__/**
+**/logs/**
+checkpoint/
+*.out
+*.err
+*.vscode
+*.pdf
+*.ipynb
+*.sh
+*.yml
