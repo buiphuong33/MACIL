@@ -52,6 +52,10 @@ python main.py --device "0" --config ./exps/imga10.json
 python main.py --device "0" --config ./exps/cub10.json 
 ```
 
+## Contact
+If you have any questions about our work or this repository, please contact us by email.
+* fwu11@zhejianglab.org
+
 ## Citation
 ```
 @misc{wu2025navigatingsemanticdrifttaskagnostic,
@@ -64,6 +68,7 @@ python main.py --device "0" --config ./exps/cub10.json
       url={https://arxiv.org/abs/2502.07560}, 
 }
 ```
+
 
 ## Acknoledgements
 Our work is built on the following repo, we appreciate their great work
