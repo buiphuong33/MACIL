@@ -58,14 +58,13 @@ If you have any questions about our work or this repository, please contact us b
 
 ## Citation
 ```
-@misc{wu2025navigatingsemanticdrifttaskagnostic,
-      title={Navigating Semantic Drift in Task-Agnostic Class-Incremental Learning}, 
-      author={Fangwen Wu and Lechao Cheng and Shengeng Tang and Xiaofeng Zhu and Chaowei Fang and Dingwen Zhang and Meng Wang},
-      year={2025},
-      eprint={2502.07560},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2502.07560}, 
+@inproceedings{
+wu2025navigating,
+title={Navigating Semantic Drift in Task-Agnostic Class-Incremental Learning},
+author={Fangwen Wu and Lechao Cheng and Shengeng Tang and Xiaofeng Zhu and Chaowei Fang and Dingwen Zhang and Meng Wang},
+booktitle={Forty-second International Conference on Machine Learning},
+year={2025},
+url={https://openreview.net/forum?id=M6L7Eaw9BW}
 }
 ```
 
