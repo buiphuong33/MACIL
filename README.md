@@ -63,8 +63,7 @@ wu2025navigating,
 title={Navigating Semantic Drift in Task-Agnostic Class-Incremental Learning},
 author={Fangwen Wu and Lechao Cheng and Shengeng Tang and Xiaofeng Zhu and Chaowei Fang and Dingwen Zhang and Meng Wang},
 booktitle={Forty-second International Conference on Machine Learning},
-year={2025},
-url={https://openreview.net/forum?id=M6L7Eaw9BW}
+year={2025}
 }
 ```
 
