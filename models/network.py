@@ -1,7 +1,8 @@
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from timm.models.layers.weight_init import trunc_normal_
+#from timm.models.layers.weight_init import trunc_normal_
+from timm.layers import trunc_normal_
 import copy
 
 from models.vit import VisionTransformer, PatchEmbed, resolve_pretrained_cfg, build_model_with_cfg, checkpoint_filter_fn
