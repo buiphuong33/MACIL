@@ -36,19 +36,49 @@ class ViT(VisionTransformer):
 
 
 
+# def _create_vision_transformer(variant, pretrained=False, **kwargs):
+#     if kwargs.get('features_only', None):
+#         raise RuntimeError('features_only not implemented for Vision Transformer models.')
+
+#     # NOTE this extra code to support handling of repr size for in21k pretrained models
+#     # pretrained_cfg = resolve_pretrained_cfg(variant, kwargs=kwargs)
+#     pretrained_cfg = resolve_pretrained_cfg(variant)
+#     default_num_classes = pretrained_cfg['num_classes']
+
+#     num_classes = kwargs.get('num_classes', default_num_classes)
+#     repr_size = kwargs.pop('representation_size', None)
+#     if repr_size is not None and num_classes != default_num_classes:
+#         repr_size = None
+
+#     model = build_model_with_cfg(
+#         ViT, variant, pretrained,
+#         pretrained_cfg=pretrained_cfg,
+#         representation_size=repr_size,
+#         pretrained_filter_fn=checkpoint_filter_fn,
+#         pretrained_custom_load='npz' in pretrained_cfg['url'],
+#         **kwargs)
+#     return model
+
+
 def _create_vision_transformer(variant, pretrained=False, **kwargs):
     if kwargs.get('features_only', None):
         raise RuntimeError('features_only not implemented for Vision Transformer models.')
 
-    # NOTE this extra code to support handling of repr size for in21k pretrained models
-    # pretrained_cfg = resolve_pretrained_cfg(variant, kwargs=kwargs)
+    # NOTE: resolve_pretrained_cfg có thể trả về dict (timm cũ) hoặc PretrainedCfg object (timm mới)
     pretrained_cfg = resolve_pretrained_cfg(variant)
-    #default_num_classes = pretrained_cfg['num_classes']
-    default_num_classes = getattr(model, 'num_classes', 1000)
-    
+
+    # Lấy num_classes & url theo cách tương thích hai đời API
+    if isinstance(pretrained_cfg, dict):
+        default_num_classes = pretrained_cfg.get('num_classes', 1000)
+        cfg_url = pretrained_cfg.get('url', '')
+    else:
+        default_num_classes = getattr(pretrained_cfg, 'num_classes', 1000)
+        cfg_url = getattr(pretrained_cfg, 'url', '')
+
     num_classes = kwargs.get('num_classes', default_num_classes)
     repr_size = kwargs.pop('representation_size', None)
     if repr_size is not None and num_classes != default_num_classes:
+        # in21k head-size fix: nếu num_classes khác default thì bỏ repr_size
         repr_size = None
 
     model = build_model_with_cfg(
@@ -56,10 +86,10 @@ def _create_vision_transformer(variant, pretrained=False, **kwargs):
         pretrained_cfg=pretrained_cfg,
         representation_size=repr_size,
         pretrained_filter_fn=checkpoint_filter_fn,
-        pretrained_custom_load='npz' in pretrained_cfg['url'],
-        **kwargs)
+        pretrained_custom_load=('npz' in cfg_url),
+        **kwargs
+    )
     return model
-
 
 class MANet(nn.Module):
 
